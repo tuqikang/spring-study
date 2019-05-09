@@ -20,7 +20,7 @@ package cn.tqktqk.springdemo.exceptions;
  *
  * @Date 2018/9/7 上午9:28
  */
-public class ServerException extends RuntimeException{
+public class ServerException extends RuntimeException {
 
     public ServerException(String message) {
         super(message);

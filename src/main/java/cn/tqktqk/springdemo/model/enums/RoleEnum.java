@@ -17,11 +17,10 @@ import lombok.NoArgsConstructor;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public enum  RoleEnum {
-    学生(1,"学生"),
-    老师(2,"老师"),
-    管理员(3,"admin")
-    ;
+public enum RoleEnum {
+    学生(1, "学生"),
+    老师(2, "老师"),
+    管理员(3, "admin");
 
     private Integer roleId;
 

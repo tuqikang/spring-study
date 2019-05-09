@@ -2,6 +2,7 @@ package cn.tqktqk.springdemo.model.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -35,5 +36,7 @@ public class BooksEntity implements Serializable {
 
     private LocalDateTime creatTime;
 
+    //逻辑删除0未删除 1删除
+    private Integer deleted;
 
 }

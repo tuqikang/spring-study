@@ -24,7 +24,7 @@ public class UserBookService {
     private UserBookMapper userBookMapper;
 
 
-    public List<BookSimpleResult> unReturned(Integer userId,Integer status){
-        return userBookMapper.bookSimpleInfoByUserAndStatus(userId,status);
+    public List<BookSimpleResult> unReturned(Integer userId, Integer status) {
+        return userBookMapper.bookSimpleInfoByUserAndStatus(userId, status);
     }
 }

@@ -21,21 +21,12 @@ import java.util.List;
  * @Author: tuqikang
  * @Date: 2019-04-15 15:00
  */
-//@ContextConfiguration("classpath*:spring-mybatis.xml")
 public class MainTest {
 
-//    @Autowired
-//    private UserLoginResult userLoginResult;
-
-
     public static void main(String[] args) throws IOException {
-//        new MainTest().test();
         ApplicationContext ctx = null;
         ctx = new ClassPathXmlApplicationContext("spring-mybatis.xml");
-//        UserLoginService userLoginService = (UserLoginService) ctx.getBean("userLoginService");
-//        UserLoginResult result = userLoginService.login("888888","888888");
-//        System.out.println(result);
-        LibraryAction libraryAction = (LibraryAction)ctx.getBean("libraryAction");
+        LibraryAction libraryAction = (LibraryAction) ctx.getBean("libraryAction");
         libraryAction.init();
         libraryAction.setVisible(true);
         libraryAction.status.requestFocus();

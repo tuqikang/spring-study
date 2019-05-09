@@ -26,17 +26,17 @@ public class UserLoginService {
     @Autowired
     private UsersMapper usersMapper;
 
-    public UserLoginResult login(String username,String password){
+    public UserLoginResult login(String username, String password) {
         UserLoginResult loginResult = usersMapper.login(username);
-        if (loginResult==null){
-            JOptionPane.showMessageDialog(null, "用户名不存在", "错误",JOptionPane.ERROR_MESSAGE);
+        if (loginResult == null) {
+            JOptionPane.showMessageDialog(null, "用户名不存在", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("用户名不存在");
         }
-        if (loginResult.getRole()==null){
+        if (loginResult.getRole() == null) {
             loginResult.setRole(RoleEnum.学生.getRoleId());
         }
-        if (!MyMD5Util.checkpassword(password,loginResult.getPassword())){
-            JOptionPane.showMessageDialog(null, "密码错误", "错误",JOptionPane.ERROR_MESSAGE);
+        if (!MyMD5Util.checkpassword(password, loginResult.getPassword())) {
+            JOptionPane.showMessageDialog(null, "密码错误", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("密码错误");
         }
         return loginResult;

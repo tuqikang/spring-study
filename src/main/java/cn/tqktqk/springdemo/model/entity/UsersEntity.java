@@ -28,6 +28,11 @@ public class UsersEntity implements Serializable {
 
     private String nickname;
 
+    //性别 1男 2女
+    private Integer gender;
+
+    private Integer age;
+
     private String phone;
 
     private String email;

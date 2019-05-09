@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ___________ ________     ____  __.
@@ -92,7 +93,7 @@ public class LibraryAction extends JFrame {
             UserLoginResult userLoginResult = userLoginService.login(username.getText(),userPassword);
             Integer role = RoleEnum.getCodeByMsg(STATUS);
             if (!(Integer.compare(userLoginResult.getRole(),role)==0)){
-                JOptionPane.showMessageDialog(null, "请选择你正确的身份", "错误",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "请选择你正确的身份", "错误", JOptionPane.ERROR_MESSAGE);
                 return;
             }else {
                 JOptionPane.showMessageDialog(null,"成功","success",JOptionPane.PLAIN_MESSAGE);
