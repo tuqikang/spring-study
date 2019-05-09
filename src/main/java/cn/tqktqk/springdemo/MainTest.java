@@ -1,10 +1,13 @@
 package cn.tqktqk.springdemo;
 
-import cn.tqktqk.springdemo.model.entity.Users;
-import cn.tqktqk.springdemo.service.UserService;
+import cn.tqktqk.springdemo.gui.LibraryAction;
+import cn.tqktqk.springdemo.model.result.UserLoginResult;
+import cn.tqktqk.springdemo.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,28 +21,23 @@ import java.util.List;
  * @Author: tuqikang
  * @Date: 2019-04-15 15:00
  */
-@ContextConfiguration("classpath*:spring-mybatis.xml")
+//@ContextConfiguration("classpath*:spring-mybatis.xml")
 public class MainTest {
 
-    @Autowired
-    private UserService userService;
+//    @Autowired
+//    private UserLoginResult userLoginResult;
 
-    public void test(){
-        List<Users> list = userService.getAll();
-        list.stream().forEach(p->{
-            System.out.println(p);
-        });
-
-        System.out.println("-----");
-        Users users = userService.findUserByUserName("1740611104");
-        System.out.println(users);
-    }
 
     public static void main(String[] args) throws IOException {
-        new MainTest().test();
-//        ApplicationContext ctx = null;
-//        ctx = new ClassPathXmlApplicationContext("spring-mybatis.xml");
-//        UserService userService = (UserService) ctx.getBean("userService");
-
+//        new MainTest().test();
+        ApplicationContext ctx = null;
+        ctx = new ClassPathXmlApplicationContext("spring-mybatis.xml");
+//        UserLoginService userLoginService = (UserLoginService) ctx.getBean("userLoginService");
+//        UserLoginResult result = userLoginService.login("888888","888888");
+//        System.out.println(result);
+        LibraryAction libraryAction = (LibraryAction)ctx.getBean("libraryAction");
+        libraryAction.init();
+        libraryAction.setVisible(true);
+        libraryAction.status.requestFocus();
     }
 }

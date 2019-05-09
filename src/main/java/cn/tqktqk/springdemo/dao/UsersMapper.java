@@ -1,20 +1,17 @@
 package cn.tqktqk.springdemo.dao;
 
-import cn.tqktqk.springdemo.model.entity.Users;
 
-import java.util.List;
+import cn.tqktqk.springdemo.model.result.UserLoginResult;import org.apache.ibatis.annotations.Param;
 
 /**
  * <p>
- * 用户信息表 Mapper 接口
+ * 用户表 Mapper 接口
  * </p>
  *
  * @author tuqikang
- * @since 2019-04-15
+ * @since 2019-05-09
  */
-public interface UsersMapper{
+public interface UsersMapper {
 
-    Users infoById(String id);
-
-    List<Users> getAllUser();
+    UserLoginResult login(@Param("username")String username);
 }

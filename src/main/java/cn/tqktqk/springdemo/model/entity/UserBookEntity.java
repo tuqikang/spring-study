@@ -2,33 +2,36 @@ package cn.tqktqk.springdemo.model.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;
-
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 用户图书关系表
  * </p>
  *
  * @author tuqikang
- * @since 2019-04-15
+ * @since 2019-05-09
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class LoginInfo implements Serializable {
+public class UserBookEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Integer id;
 
-    private String userId;
+    private Integer userId;
 
-    private String ip;
+    private Integer bookId;
 
-    private LocalDateTime loginDatetime;
+    private Integer status;
+
+    private LocalDateTime createTime;
+
+    private LocalDateTime expireTime;
 
 
 }

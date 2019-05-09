@@ -1,8 +1,7 @@
 package cn.tqktqk.springdemo.service;
 
-import cn.tqktqk.springdemo.dao.UsersMapper;
-import cn.tqktqk.springdemo.model.entity.Users;
-import lombok.Data;
+import cn.tqktqk.springdemo.dao.UserBookMapper;
+import cn.tqktqk.springdemo.model.result.BookSimpleResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +15,16 @@ import java.util.List;
  * |____|    \_____\ \_/ |____|__ \
  *
  * @Author: tuqikang
- * @Date: 2019-04-15 15:02
+ * @Date: 2019-05-09 16:27
  */
-@Service("userService")
-public class UserService {
+@Service
+public class UserBookService {
+
     @Autowired
-    private UsersMapper usersMapper;
+    private UserBookMapper userBookMapper;
 
-    public Users findUserByUserName(String id){
-        return usersMapper.infoById(id);
-    }
 
-    public List<Users> getAll(){
-        return usersMapper.getAllUser();
+    public List<BookSimpleResult> unReturned(Integer userId,Integer status){
+        return userBookMapper.bookSimpleInfoByUserAndStatus(userId,status);
     }
 }

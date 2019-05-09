@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tqktqk.springdemo.dao.UsersMapper">
+
+    <select id="login" resultType="cn.tqktqk.springdemo.model.result.UserLoginResult">
+        SELECT a.id userId,a.username,a.password,b.role_id FROM users a left join user_role b on a.id=b.user_id where a.username=#{username,jdbcType=VARCHAR}
+    </select>
+</mapper>
