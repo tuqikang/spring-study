@@ -1,6 +1,10 @@
 package cn.tqktqk.springdemo.dao;
 
 
+import cn.tqktqk.springdemo.model.entity.BooksEntity;import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 /**
  * <p>
  * 图书表 Mapper 接口
@@ -11,4 +15,9 @@ package cn.tqktqk.springdemo.dao;
  */
 public interface BooksMapper {
 
+    List<BooksEntity> selectList(@Param("findFlag")String findFlag);
+
+    BooksEntity selectById(@Param("id")Integer id);
+
+    int updateRestCount(@Param("id")Integer id);
 }

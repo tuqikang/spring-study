@@ -1,7 +1,10 @@
 package cn.tqktqk.springdemo.dao;
 
-import cn.tqktqk.springdemo.model.result.BookSimpleResult;import org.apache.ibatis.annotations.Param;
+import cn.tqktqk.springdemo.model.result.BookSimpleResult;
+import cn.tqktqk.springdemo.model.result.SimpleCountResult;
+import org.apache.ibatis.annotations.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -15,4 +18,10 @@ import java.util.List;
 public interface UserBookMapper{
 
     List<BookSimpleResult> bookSimpleInfoByUserAndStatus(@Param("userId")Integer userId, @Param("status")Integer status);
+
+    List<SimpleCountResult> countByStatus(@Param("userId")Integer userId);
+
+    int nowCount(@Param("userId")Integer userId);
+
+    int insertLendInfo(@Param("userId")Integer userId, @Param("bookId")Integer bookId, @Param("today")LocalDate today, @Param("expire")LocalDate expire);
 }

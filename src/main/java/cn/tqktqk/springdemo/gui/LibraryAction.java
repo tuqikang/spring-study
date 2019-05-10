@@ -28,6 +28,9 @@ public class LibraryAction extends JFrame {
     @Autowired
     private UserLoginService userLoginService;
 
+    @Autowired
+    private NormalPort normalPort;
+
     private JTextField username=new JTextField(20);
     private JPasswordField password=new JPasswordField(20);
     private static String STATUS="";
@@ -84,9 +87,7 @@ public class LibraryAction extends JFrame {
         p11.add(login);
         p11.add(new JLabel());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        status.addItemListener(p->{
-            STATUS=(String)p.getItem();
-        });
+        status.addItemListener(p-> STATUS=(String)p.getItem());
 
         login.addActionListener(p->{
             String userPassword=String.valueOf(password.getPassword());
@@ -97,6 +98,8 @@ public class LibraryAction extends JFrame {
                 return;
             }else {
                 JOptionPane.showMessageDialog(null,"成功","success",JOptionPane.PLAIN_MESSAGE);
+                setVisible(false);
+                normalPort.design(userLoginResult);
             }
         });
     }

@@ -39,4 +39,8 @@ public class BooksEntity implements Serializable {
     //逻辑删除0未删除 1删除
     private Integer deleted;
 
+    @Override
+    public String toString() {
+        return "书名:'" + name + "," + description + ", 余量:" + rest;
+    }
 }

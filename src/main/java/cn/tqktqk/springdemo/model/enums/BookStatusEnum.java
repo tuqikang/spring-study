@@ -19,8 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public enum BookStatusEnum {
     未归还(1, "未归还"),
-    已按时归还(2, "已按时归还"),
-    未按时归还(3, "未按时归还");
+    已按时归还(2, "已按时归还");
 
     private Integer statusId;
 
