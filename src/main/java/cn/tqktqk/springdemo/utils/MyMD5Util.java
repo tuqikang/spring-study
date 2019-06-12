@@ -44,9 +44,6 @@ public class MyMD5Util {
      * oldpasswd 正确密码
      */
     public static boolean checkpassword(String newpasswd, String oldpasswd) {
-        if (encoderByMd5(newpasswd).equals(oldpasswd))
-            return true;
-        else
-            return false;
+        return encoderByMd5(newpasswd).equals(oldpasswd);
     }
 }

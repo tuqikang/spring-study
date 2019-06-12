@@ -1,6 +1,9 @@
 package cn.tqktqk.springdemo.gui;
 
+import cn.tqktqk.springdemo.gui.admin.AdminMenuPort;
 import cn.tqktqk.springdemo.model.result.UserLoginResult;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * ___________ ________     ____  __.
@@ -12,7 +15,20 @@ import cn.tqktqk.springdemo.model.result.UserLoginResult;
  * @Author: tuqikang
  * @Date: 2019-05-09 18:42
  */
-public interface UserPortFactory {
+@Component
+public class UserPortFactory {
 
-    void design(UserLoginResult loginResult);
+    @Autowired
+    private NormalPort userPort;
+
+    @Autowired
+    private AdminMenuPort adminMenuPort;
+
+    public NormalPort getUserPort(){
+        return userPort;
+    }
+
+    public AdminMenuPort getAdminPort(){
+        return adminMenuPort;
+    }
 }

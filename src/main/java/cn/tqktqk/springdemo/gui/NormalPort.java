@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  * @Date: 2019-05-09 18:44
  */
 @Component
-public class NormalPort extends JFrame implements UserPortFactory {
+public class NormalPort extends JFrame {
 
     @Autowired
     private UsersMapper usersMapper;
@@ -41,7 +41,6 @@ public class NormalPort extends JFrame implements UserPortFactory {
     @Autowired
     private ReturnBookPort returnBookPort;
 
-    @Override
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(735,350,330,330);
