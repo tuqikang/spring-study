@@ -1,6 +1,7 @@
 package cn.tqktqk.springdemo.dao;
 
 
+import cn.tqktqk.springdemo.model.result.UserInfos;
 import cn.tqktqk.springdemo.model.result.UserLoginResult;import org.apache.ibatis.annotations.Param;
 
 /**
@@ -14,4 +15,6 @@ import cn.tqktqk.springdemo.model.result.UserLoginResult;import org.apache.ibati
 public interface UsersMapper {
 
     UserLoginResult login(@Param("username")String username);
+
+    UserInfos selectUserInfo(@Param("userId")Integer userId);
 }

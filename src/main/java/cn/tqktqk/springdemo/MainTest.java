@@ -1,15 +1,9 @@
 package cn.tqktqk.springdemo;
 
 import cn.tqktqk.springdemo.gui.LibraryAction;
-import cn.tqktqk.springdemo.model.result.UserLoginResult;
-import cn.tqktqk.springdemo.service.UserLoginService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import javax.swing.*;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * ___________ ________     ____  __.
@@ -29,6 +23,7 @@ public class MainTest {
         LibraryAction libraryAction = (LibraryAction) ctx.getBean("libraryAction");
         libraryAction.init();
         libraryAction.setVisible(true);
-        libraryAction.status.requestFocus();
+        //聚焦
+        LibraryAction.status.requestFocus();
     }
 }
