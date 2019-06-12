@@ -20,4 +20,6 @@ public interface BooksMapper {
     BooksEntity selectById(@Param("id")Integer id);
 
     int updateRestCount(@Param("id")Integer id);
+
+    int incrRestCount(@Param("id")Integer id);
 }

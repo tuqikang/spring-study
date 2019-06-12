@@ -11,4 +11,7 @@
     <update id="updateRestCount">
         UPDATE `library`.`books`  set rest=rest-1  WHERE (`id` = #{id,jdbcType=INTEGER} );
     </update>
+    <update id="incrRestCount">
+      UPDATE `library`.`books`  set rest=rest+1  WHERE (`id` = #{id,jdbcType=INTEGER} );
+    </update>
 </mapper>

@@ -53,7 +53,7 @@ public class FindPort extends JFrame {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLayout(new GridLayout(1,1));
         add(jpnel1);
-//        jpnel1.setLayout(new GridLayout(list.size() + 1, 1));
+//        jpnel1.setLayout(new GridLayout(list.size() + 1, 1));o
         setLayout(new GridLayout(list.size() + 1, 1));
         jCheckBox = new JCheckBox[list.size()];
         for (int i = 0; i < list.size(); i++) {

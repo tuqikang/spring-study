@@ -38,6 +38,9 @@ public class NormalPort extends JFrame implements UserPortFactory {
     @Autowired
     private SelfCenterInfo selfCenterInfo;
 
+    @Autowired
+    private ReturnBookPort returnBookPort;
+
     @Override
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -75,6 +78,7 @@ public class NormalPort extends JFrame implements UserPortFactory {
 
         lendButton.addActionListener(p->lendPort.init(loginResul));
         selfButton.addActionListener(p->selfCenterInfo.init(loginResul.getUserId()));
+        repayButton.addActionListener(p->returnBookPort.init(loginResul));
 
         setVisible(true);
 
