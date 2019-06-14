@@ -8,4 +8,8 @@
     <select id="selectUserInfo" resultType="cn.tqktqk.springdemo.model.result.UserInfos">
         select username,nickname,gender,age,phone,email from users where id=#{userId,jdbcType=INTEGER}
     </select>
+    <insert id="insertUser">
+        INSERT INTO `library`.`users` (`username`, `nickname`, `gender`, `age`, `phone`, `email`)
+        VALUES (#{user.username} , #{user.nickname} , #{user.gender} , #{user.age} , #{user.phone} , #{user.email} );
+    </insert>
 </mapper>

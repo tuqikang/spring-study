@@ -1,6 +1,7 @@
 package cn.tqktqk.springdemo.gui.admin;
 
 import cn.tqktqk.springdemo.model.result.UserLoginResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -26,6 +27,9 @@ import java.awt.*;
 @Component
 public class AdminMenuPort extends JFrame {
 
+    @Autowired
+    private InsertUserPort insertUserPort;
+
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(735,350,330,330);
@@ -49,6 +53,10 @@ public class AdminMenuPort extends JFrame {
         centerOfCenter.add(definitionButton);
         centerOfCenter.add(insertBookButton);
         centerOfCenter.add(deleteBookButton);
+
+        inserteUserButton.addActionListener(p->{
+            insertUserPort.init();
+        });
 
         setVisible(true);
     }
