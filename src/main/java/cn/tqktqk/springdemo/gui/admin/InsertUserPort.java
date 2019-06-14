@@ -101,14 +101,11 @@ public class InsertUserPort extends JFrame {
                 throw new ServerException("该用户已经存在");
             }
             insert(usersEntity);
-            int role;
-            if (studentRadio.isSelected()) {
-                role = RoleEnum.getCodeByMsg("学生");
-            } else {
-                role = RoleEnum.getCodeByMsg("老师");
+            if (teacherRadio.isSelected()) {
+                UserLoginResult result = usersMapper.login(usersEntity.getUsername());
+                userRoleMapper.insert(result.getUserId(), RoleEnum.老师.getRoleId());
             }
-            UserLoginResult result = usersMapper.login(usersEntity.getUsername());
-            userRoleMapper.insert(result.getUserId(), role);
+            flush();
             setVisible(false);
         });
 
@@ -169,7 +166,7 @@ public class InsertUserPort extends JFrame {
         String username = text1.getText() == null ? "" : text1.getText();
         String nickname = text2.getText() == null ? "" : text2.getText();
         Integer gender = text3.getText() == null ? -1 : text3.getText().equals("男") ? 1 : 2;
-        Integer age = text4.getText() == null ? -1 : Integer.valueOf(text4.getText());
+        Integer age = text4.getText() == null||text4.getText().equals("") ? -1 : Integer.valueOf(text4.getText());
         String phone = text5.getText() == null ? "" : text5.getText();
         String email = text6.getText() == null ? "" : text6.getText();
 
