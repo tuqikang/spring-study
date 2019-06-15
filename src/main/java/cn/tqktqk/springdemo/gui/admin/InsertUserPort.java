@@ -7,6 +7,7 @@ import cn.tqktqk.springdemo.exceptions.ServerException;
 import cn.tqktqk.springdemo.model.entity.UsersEntity;
 import cn.tqktqk.springdemo.model.enums.RoleEnum;
 import cn.tqktqk.springdemo.model.result.UserLoginResult;
+import cn.tqktqk.springdemo.service.ValidRegex;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,15 +36,6 @@ import java.awt.*;
 @Component
 public class InsertUserPort extends JFrame {
 
-    /**
-     * 正则表达式：验证手机号
-     */
-    public static final String REGEX_MOBILE = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-
-    /**
-     * 正则表达式：验证邮箱
-     */
-    public static final String REGEX_EMAIL = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
 
     @Autowired
     private UsersMapper usersMapper;
@@ -124,7 +116,7 @@ public class InsertUserPort extends JFrame {
     }
 
     public void autoPack() {
-        jPanel1 = new JPanel(new GridLayout(4, 4));
+        jPanel1 = new JPanel(new GridLayout(8, 2));
         jPanel1.add(label1);
         jPanel1.add(text1);
         label1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -148,7 +140,7 @@ public class InsertUserPort extends JFrame {
         group = new ButtonGroup();
         group.add(studentRadio);
         group.add(teacherRadio);
-        jPanel1.add(ensure);
+        jPanel1.add (ensure);
         jPanel1.add(cancel);
     }
 
@@ -165,8 +157,18 @@ public class InsertUserPort extends JFrame {
         UsersEntity usersEntity = new UsersEntity();
         String username = text1.getText() == null ? "" : text1.getText();
         String nickname = text2.getText() == null ? "" : text2.getText();
-        Integer gender = text3.getText() == null ? -1 : text3.getText().equals("男") ? 1 : 2;
-        Integer age = text4.getText() == null||text4.getText().equals("") ? -1 : Integer.valueOf(text4.getText());
+        String genderStr = text3.getText() == null ? "" : text3.getText();
+        if (!genderStr.equals("男") && !genderStr.equals("女")) {
+            JOptionPane.showMessageDialog(null, "性别需填:男或者女", "错误", JOptionPane.ERROR_MESSAGE);
+            throw new ServerException("性别需填");
+        }
+        Integer gender = genderStr.equals("男") ? 1 : 2;
+        String ageStr = text4.getText() == null ? "" : text4.getText();
+        if (!ageStr.matches(ValidRegex.REGEX_POSITIVE)) {
+            JOptionPane.showMessageDialog(null, "年龄不合法", "错误", JOptionPane.ERROR_MESSAGE);
+            throw new ServerException("年龄不合法");
+        }
+        Integer age = Integer.valueOf(ageStr);
         String phone = text5.getText() == null ? "" : text5.getText();
         String email = text6.getText() == null ? "" : text6.getText();
 
@@ -193,23 +195,11 @@ public class InsertUserPort extends JFrame {
             JOptionPane.showMessageDialog(null, "姓名不能为空", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("姓名不能为空");
         }
-        if (entity.getGender() == -1) {
-            JOptionPane.showMessageDialog(null, "性别字段有问题,男or女", "错误", JOptionPane.ERROR_MESSAGE);
-            throw new ServerException("性别字段有问题");
-        }
-        if (entity.getAge() == -1) {
-            JOptionPane.showMessageDialog(null, "年龄不能为空", "错误", JOptionPane.ERROR_MESSAGE);
-            throw new ServerException("年龄不能为空");
-        }
-        if (entity.getAge() < 0) {
-            JOptionPane.showMessageDialog(null, "年龄不合法", "错误", JOptionPane.ERROR_MESSAGE);
-            throw new ServerException("年龄不合法");
-        }
         if (entity.getEmail().equals("")) {
             JOptionPane.showMessageDialog(null, "邮箱不能为空", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("邮箱不能为空");
         }
-        if (!entity.getEmail().matches(REGEX_EMAIL)) {
+        if (!entity.getEmail().matches(ValidRegex.REGEX_EMAIL)) {
             JOptionPane.showMessageDialog(null, "邮箱不合法", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("邮箱不合法");
         }
@@ -217,7 +207,7 @@ public class InsertUserPort extends JFrame {
             JOptionPane.showMessageDialog(null, "手机号码不能为空", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("手机号码不能为空");
         }
-        if (!entity.getPhone().matches(REGEX_MOBILE)) {
+        if (!entity.getPhone().matches(ValidRegex.REGEX_MOBILE)) {
             JOptionPane.showMessageDialog(null, "手机号码不合法", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("手机号码不合法");
         }

@@ -30,6 +30,9 @@ public class AdminMenuPort extends JFrame {
     @Autowired
     private InsertUserPort insertUserPort;
 
+    @Autowired
+    private DefinitionPort definitionPort;
+
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(735,350,330,330);
@@ -56,6 +59,10 @@ public class AdminMenuPort extends JFrame {
 
         inserteUserButton.addActionListener(p->{
             insertUserPort.init();
+        });
+
+        definitionButton.addActionListener(p->{
+            definitionPort.init();
         });
 
         setVisible(true);

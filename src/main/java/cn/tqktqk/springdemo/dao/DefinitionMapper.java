@@ -16,4 +16,8 @@ public interface DefinitionMapper {
     DefinitionEntity selectByRole(@Param("role")Integer role);
 
     Integer upperLimit(Integer role);
+
+    void insertByRole(@Param("entity")DefinitionEntity entity);
+
+    void updateByRole(@Param("entity")DefinitionEntity entity);
 }

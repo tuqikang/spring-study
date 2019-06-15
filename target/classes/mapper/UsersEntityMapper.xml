@@ -10,6 +10,6 @@
     </select>
     <insert id="insertUser">
         INSERT INTO `library`.`users` (`username`, `nickname`, `gender`, `age`, `phone`, `email`)
-        VALUES (#{user.username} , #{user.nickname} , #{user.gender} , #{user.age} , #{user.phone} , #{user.email} );
+        VALUES (#{user.username} , #{user.nickname} , #{user.gender} , #{user.age} , #{user.phone} , #{user.email} )
     </insert>
 </mapper>

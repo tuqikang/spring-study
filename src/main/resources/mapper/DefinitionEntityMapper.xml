@@ -8,4 +8,13 @@
     <select id="upperLimit" resultType="java.lang.Integer">
          select ifnull(upper_limit,0) from definition where role_id=#{role,jdbcType=INTEGER}
     </select>
+    <insert id="insertByRole">
+        insert  into definition (`role_id`,`upper_limit`,`time_limit`,`forfeit`,`update`)
+        values (#{entity.roleId} ,#{entity.upperLimit} ,#{entity.timeLimit} ,#{entity.forfeit} ,#{entity.upperLimit} )
+    </insert>
+    <update id="updateByRole">
+        UPDATE `library`.`definition`
+        SET `upper_limit` = #{entity.upperLimit} , `time_limit` = #{entity.timeLimit} , `forfeit` = #{entity.forfeit} ,`update`=#{entity.update}
+        WHERE (`id` = #{entity.roleId} );
+    </update>
 </mapper>
