@@ -22,4 +22,10 @@ public interface BooksMapper {
     int updateRestCount(@Param("id")Integer id);
 
     int incrRestCount(@Param("id")Integer id);
+
+    List<BooksEntity> selectAll();
+
+    int insertBook(@Param("entity")BooksEntity entity);
+
+    int deleteById(@Param("id") int id, @Param("amount")int amount);
 }

@@ -1,5 +1,6 @@
 package cn.tqktqk.springdemo.model.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 import lombok.Data;
@@ -31,7 +32,7 @@ public class DefinitionEntity implements Serializable {
 
     private Double forfeit;
 
-    private LocalDateTime update;
+    private LocalDate update;
 
 
 }

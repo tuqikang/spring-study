@@ -1,14 +1,12 @@
 package cn.tqktqk.springdemo.gui.admin;
 
-import cn.tqktqk.springdemo.dao.RoleMapper;
 import cn.tqktqk.springdemo.dao.UserRoleMapper;
 import cn.tqktqk.springdemo.dao.UsersMapper;
 import cn.tqktqk.springdemo.exceptions.ServerException;
 import cn.tqktqk.springdemo.model.entity.UsersEntity;
 import cn.tqktqk.springdemo.model.enums.RoleEnum;
 import cn.tqktqk.springdemo.model.result.UserLoginResult;
-import cn.tqktqk.springdemo.service.ValidRegex;
-import org.apache.ibatis.annotations.Param;
+import cn.tqktqk.springdemo.utils.ValidRegex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,7 +70,7 @@ public class InsertUserPort extends JFrame {
     private ButtonGroup group;
 
     public void init() {
-        setBounds(735, 350, 400, 400);
+        setBounds(780, 350, 400, 400);
         setLayout(new GridLayout(1, 1));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         remove(jPanel1);

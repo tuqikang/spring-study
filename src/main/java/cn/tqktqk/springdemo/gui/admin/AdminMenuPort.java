@@ -33,38 +33,44 @@ public class AdminMenuPort extends JFrame {
     @Autowired
     private DefinitionPort definitionPort;
 
+    @Autowired
+    private DefinitionInfoPort definitionInfoPort;
+
+    @Autowired
+    private BookManagePort bookManagePort;
+
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(735,350,330,330);
+        setBounds(735, 350, 330, 330);
         setLayout(new BorderLayout());
 
-        JPanel topJpanel = new JPanel(new GridLayout(1,2));
-        JLabel nicknameJLabel = new JLabel("您好:"+loginResul.getNickname());
+        JPanel topJpanel = new JPanel(new GridLayout(1, 2));
+        JLabel nicknameJLabel = new JLabel("您好:" + loginResul.getNickname());
         nicknameJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        topJpanel.add(new Label());topJpanel.add(nicknameJLabel);
-        add(topJpanel,BorderLayout.NORTH);
+        topJpanel.add(new Label());
+        topJpanel.add(nicknameJLabel);
+        add(topJpanel, BorderLayout.NORTH);
 
-        JPanel centerJpanel =  new JPanel(new BorderLayout());
-        JPanel centerOfCenter = new JPanel(new GridLayout(4,1));
-        centerJpanel.add(centerOfCenter,BorderLayout.CENTER);
+        JPanel centerJpanel = new JPanel(new BorderLayout());
+        JPanel centerOfCenter = new JPanel(new GridLayout(4, 1));
+        centerJpanel.add(centerOfCenter, BorderLayout.CENTER);
         JButton inserteUserButton = new JButton("添加用户");
         JButton definitionButton = new JButton("规章管理");
-        JButton insertBookButton = new JButton("添加图书");
-        JButton deleteBookButton = new JButton("删除图书");
-        add(centerJpanel,BorderLayout.CENTER);
+        JButton definitionInfoButton = new JButton("规章查看");
+        JButton bookManageButton = new JButton("图书管理");
+        add(centerJpanel, BorderLayout.CENTER);
         centerOfCenter.add(inserteUserButton);
+        centerOfCenter.add(definitionInfoButton);
         centerOfCenter.add(definitionButton);
-        centerOfCenter.add(insertBookButton);
-        centerOfCenter.add(deleteBookButton);
+        centerOfCenter.add(bookManageButton);
 
-        inserteUserButton.addActionListener(p->{
-            insertUserPort.init();
-        });
+        inserteUserButton.addActionListener(p -> insertUserPort.init());
 
-        definitionButton.addActionListener(p->{
-            definitionPort.init();
-        });
+        definitionButton.addActionListener(p -> definitionPort.init());
 
+        definitionInfoButton.addActionListener(p -> definitionInfoPort.init());
+
+        bookManageButton.addActionListener(p -> bookManagePort.init(1));
         setVisible(true);
     }
 }

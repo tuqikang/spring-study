@@ -10,7 +10,7 @@
     </select>
     <insert id="insertByRole">
         insert  into definition (`role_id`,`upper_limit`,`time_limit`,`forfeit`,`update`)
-        values (#{entity.roleId} ,#{entity.upperLimit} ,#{entity.timeLimit} ,#{entity.forfeit} ,#{entity.upperLimit} )
+        values (#{entity.roleId} ,#{entity.upperLimit} ,#{entity.timeLimit} ,#{entity.forfeit} ,#{entity.update}  )
     </insert>
     <update id="updateByRole">
         UPDATE `library`.`definition`

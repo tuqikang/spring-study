@@ -34,7 +34,7 @@ public class BooksEntity implements Serializable {
 
     private Double price;
 
-    private LocalDateTime creatTime;
+    private LocalDateTime createTime;
 
     //逻辑删除0未删除 1删除
     private Integer deleted;

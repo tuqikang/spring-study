@@ -4,14 +4,13 @@ import cn.tqktqk.springdemo.dao.DefinitionMapper;
 import cn.tqktqk.springdemo.exceptions.ServerException;
 import cn.tqktqk.springdemo.model.entity.DefinitionEntity;
 import cn.tqktqk.springdemo.model.enums.RoleEnum;
-import cn.tqktqk.springdemo.service.ValidRegex;
+import cn.tqktqk.springdemo.utils.ValidRegex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * █████▒█      ██  ▄████▄   ██ ▄█▀       ██████╗ ██╗   ██╗ ██████╗
@@ -56,7 +55,7 @@ public class DefinitionPort extends JFrame {
     private ButtonGroup group;
 
     public void init() {
-        setBounds(735, 350, 400, 400);
+        setBounds(780, 350, 400, 400);
         setLayout(new GridLayout(1, 1));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         remove(jPanel);
@@ -65,7 +64,7 @@ public class DefinitionPort extends JFrame {
 
         ensure.addActionListener(p -> {
             DefinitionEntity entity = getByForm();
-            entity.setUpdate(LocalDateTime.now());
+            entity.setUpdate(LocalDate.now());
             if (definitionMapper.selectByRole(entity.getRoleId()) == null) {
                 definitionMapper.insertByRole(entity);
             } else {

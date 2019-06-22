@@ -14,4 +14,14 @@
     <update id="incrRestCount">
       UPDATE `library`.`books`  set rest=rest+1  WHERE (`id` = #{id,jdbcType=INTEGER} );
     </update>
+    <select id="selectAll" resultType="cn.tqktqk.springdemo.model.entity.BooksEntity">
+        select * from books;
+    </select>
+    <insert id="insertBook">
+        insert into books (name,description,amount,rest,price)
+        values (#{entity.name},#{entity.description} ,#{entity.amount},#{entity.rest} ,#{entity.price} )
+    </insert>
+    <update id="deleteById">
+        update  `library`.`books`  set deleted=1 where id=#{id,jdbcType=INTEGER} and rest=#{amount}
+    </update>
 </mapper>
