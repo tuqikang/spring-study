@@ -90,11 +90,15 @@ public class BookManagePort extends JFrame {
     }
 
     public void init(int pn) {
+        this.init(pn, index.getText());
+    }
+
+    public void init(int pn, String flag) {
         map = null;
         this.pn = pn;
         autoPack();
         PageHelper.startPage(pn, 10);
-        List<BooksEntity> entityList = booksMapper.selectList(index.getText());
+        List<BooksEntity> entityList = booksMapper.selectList(flag);
         PageInfo<BooksEntity> pageInfo = new PageInfo<>(entityList);
         pages = pageInfo.getPages();
         sum = new JLabel("总页码:" + pages);
@@ -139,6 +143,9 @@ public class BookManagePort extends JFrame {
             }
             init(next);
         });
+        search.addActionListener(p -> {
+            init(1);
+        });
     }
 
 
@@ -160,7 +167,6 @@ public class BookManagePort extends JFrame {
         remove(floot);
         content = new JPanel(new GridLayout(10, 1));
         top = new JPanel(new BorderLayout());
-        index.setText("");
         top.add(index, BorderLayout.CENTER);
         top.add(search, BorderLayout.EAST);
         floot = new JPanel(new GridLayout(2, 1));
