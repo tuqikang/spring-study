@@ -5,6 +5,8 @@ import cn.tqktqk.springdemo.model.entity.UsersEntity;
 import cn.tqktqk.springdemo.model.result.UserInfos;
 import cn.tqktqk.springdemo.model.result.UserLoginResult;import org.apache.ibatis.annotations.Param;
 
+import javax.swing.*;
+
 /**
  * <p>
  * 用户表 Mapper 接口
@@ -20,4 +22,6 @@ public interface UsersMapper {
     UserInfos selectUserInfo(@Param("userId")Integer userId);
 
     int insertUser(@Param("user")UsersEntity user);
+
+    int updatePassword(@Param("username")String username, @Param("newPwd")String newPwd);
 }

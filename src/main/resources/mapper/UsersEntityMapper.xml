@@ -12,4 +12,7 @@
         INSERT INTO `library`.`users` (`username`, `nickname`, `gender`, `age`, `phone`, `email`)
         VALUES (#{user.username} , #{user.nickname} , #{user.gender} , #{user.age} , #{user.phone} , #{user.email} )
     </insert>
+    <update id="updatePassword">
+        update `library`.`users` set password=#{newPwd}  where username=#{username}
+    </update>
 </mapper>

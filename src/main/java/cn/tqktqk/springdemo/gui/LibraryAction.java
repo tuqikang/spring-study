@@ -5,6 +5,7 @@ import cn.tqktqk.springdemo.model.result.UserLoginResult;
 import cn.tqktqk.springdemo.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -28,6 +29,9 @@ public class LibraryAction extends JFrame {
 
     @Autowired
     private UserPortFactory userPortFactory;
+
+    @Autowired
+    private UpdatePasswordPort updatePasswordPort;
 
     private JTextField username = new JTextField(20);
     private JPasswordField password = new JPasswordField(20);
@@ -87,7 +91,11 @@ public class LibraryAction extends JFrame {
 
 
         JButton login = new JButton("login");
-        p11.add(login);
+        JButton update = new JButton("修改密码");
+        JPanel loginAndUpdate = new JPanel(new GridLayout(1, 2));
+        loginAndUpdate.add(login);
+        loginAndUpdate.add(update);
+        p11.add(loginAndUpdate);
         p11.add(new JLabel());
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         status.addItemListener(p -> STATUS = (String) p.getItem());
@@ -108,6 +116,9 @@ public class LibraryAction extends JFrame {
                     userPortFactory.getUserPort().design(userLoginResult);
                 }
             }
+        });
+        update.addActionListener(p -> {
+            updatePasswordPort.init();
         });
     }
 
@@ -137,7 +148,6 @@ public class LibraryAction extends JFrame {
         @Override
         public void focusGained(FocusEvent focusEvent) {
             String pswd = String.valueOf(password.getPassword());
-            System.out.println(pswd);
             if (pswd.equals(INFO_USERPSD)) {
                 password.setText("");
                 password.setEchoChar(defaultChar);
