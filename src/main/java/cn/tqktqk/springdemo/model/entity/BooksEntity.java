@@ -1,5 +1,6 @@
 package cn.tqktqk.springdemo.model.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -34,7 +35,7 @@ public class BooksEntity implements Serializable {
 
     private Double price;
 
-    private LocalDateTime createTime;
+    private LocalDate createTime;
 
     //逻辑删除0未删除 1删除
     private Integer deleted;
