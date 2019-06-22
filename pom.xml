@@ -6,7 +6,7 @@
 
     <groupId>cn.tqktqk.study</groupId>
     <artifactId>spring-demo-action</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-RELEASE</version>
     <build>
         <plugins>
             <plugin>

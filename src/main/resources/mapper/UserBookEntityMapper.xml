@@ -9,7 +9,7 @@
         select status,ifnull(count(1),0) amount from user_book where user_id=#{userId,jdbcType=INTEGER}  group by status
     </select>
     <select id="nowCount" resultType="int">
-        select ifnull(count(1),0) from user_book where user_id=#{userId,jdbcType=INTEGER}  and status!=2
+        select ifnull(count(1),0) from user_book where user_id=#{userId,jdbcType=INTEGER}  and status=1
     </select>
     <insert id="insertLendInfo">
         insert into user_book (`user_id`,`book_id`,`status`,`create_time`,`expire_time`) value (#{userId,jdbcType=INTEGER},
@@ -22,5 +22,6 @@
     <update id="updateStatusById">
         UPDATE `library`.`user_book` SET `status` = #{statusId}  WHERE (`id` = #{id,jdbcType=INTEGER} );
     </update>
+
 
 </mapper>

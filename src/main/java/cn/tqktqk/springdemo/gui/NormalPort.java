@@ -1,7 +1,9 @@
 package cn.tqktqk.springdemo.gui;
 
 import cn.tqktqk.springdemo.dao.DefinitionMapper;
+import cn.tqktqk.springdemo.dao.UserBookMapper;
 import cn.tqktqk.springdemo.dao.UsersMapper;
+import cn.tqktqk.springdemo.exceptions.ServerException;
 import cn.tqktqk.springdemo.model.entity.DefinitionEntity;
 import cn.tqktqk.springdemo.model.result.UserLoginResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +32,16 @@ public class NormalPort extends JFrame {
     private UsersMapper usersMapper;
 
     @Autowired
+    private UserBookMapper userBookMapper;
+
+    @Autowired
     private DefinitionMapper definitionMapper;
 
     @Autowired
     private LendPort lendPort;
+
+    @Autowired
+    private LendBookPort lendBookPort;
 
     @Autowired
     private SelfCenterInfo selfCenterInfo;
@@ -43,41 +51,51 @@ public class NormalPort extends JFrame {
 
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setBounds(735,350,330,330);
+        setBounds(735, 350, 330, 330);
         setLayout(new BorderLayout());
 
-        JPanel topJpanel = new JPanel(new GridLayout(1,2));
-        JLabel nicknameJLabel = new JLabel("您好:"+loginResul.getNickname());
+        JPanel topJpanel = new JPanel(new GridLayout(1, 2));
+        JLabel nicknameJLabel = new JLabel("您好:" + loginResul.getNickname());
         nicknameJLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-        topJpanel.add(new Label());topJpanel.add(nicknameJLabel);
-        add(topJpanel,BorderLayout.NORTH);
+        topJpanel.add(new Label());
+        topJpanel.add(nicknameJLabel);
+        add(topJpanel, BorderLayout.NORTH);
 
-        JPanel centerJpanel =  new JPanel(new BorderLayout());
-        JPanel centerOfCenter = new JPanel(new GridLayout(4,1));
-        centerJpanel.add(centerOfCenter,BorderLayout.CENTER);
+        JPanel centerJpanel = new JPanel(new BorderLayout());
+        JPanel centerOfCenter = new JPanel(new GridLayout(4, 1));
+        centerJpanel.add(centerOfCenter, BorderLayout.CENTER);
         JButton lendButton = new JButton("借书");
         JButton repayButton = new JButton("还书");
         JButton selfButton = new JButton("个人中心");
         JButton definitionButton = new JButton("规定须知");
-        add(centerJpanel,BorderLayout.CENTER);
+        add(centerJpanel, BorderLayout.CENTER);
         centerOfCenter.add(lendButton);
         centerOfCenter.add(repayButton);
         centerOfCenter.add(selfButton);
         centerOfCenter.add(definitionButton);
 
-        definitionButton.addActionListener(p->{
+        definitionButton.addActionListener(p -> {
             DefinitionEntity definition = definitionMapper.selectByRole(loginResul.getRole());
             StringBuffer sb = new StringBuffer();
             LocalDate now = LocalDate.now();
             sb.append("您的借书上限为：").append(definition.getUpperLimit()).append("本\n").append("时间限制为：")
                     .append(definition.getTimeLimit()).append("天\n例如:在").append(now).append("借书\n需在")
                     .append(now.plusDays(definition.getTimeLimit())).append("前还书\n").append("超过还书时间，每天需罚：").append(definition.getForfeit()).append("元");
-            JOptionPane.showMessageDialog(null,sb.toString(),"成功",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, sb.toString(), "成功", JOptionPane.PLAIN_MESSAGE);
         });
 
-        lendButton.addActionListener(p->lendPort.init(loginResul));
-        selfButton.addActionListener(p->selfCenterInfo.init(loginResul.getUserId()));
-        repayButton.addActionListener(p->returnBookPort.init(loginResul));
+        lendButton.addActionListener(p -> {
+            lendBookPort.setUserInfo(loginResul);
+            lendBookPort.init(1);
+        });
+        selfButton.addActionListener(p -> selfCenterInfo.init(loginResul.getUserId()));
+        repayButton.addActionListener(p -> {
+            if (userBookMapper.nowCount(loginResul.getUserId()) == 0) {
+                JOptionPane.showMessageDialog(null, "你当前没有借阅任何图书", "成功", JOptionPane.PLAIN_MESSAGE);
+                throw new ServerException("无书");
+            }
+            returnBookPort.init(loginResul);
+        });
 
         setVisible(true);
 

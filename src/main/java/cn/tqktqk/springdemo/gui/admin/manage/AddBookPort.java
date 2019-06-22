@@ -53,6 +53,10 @@ public class AddBookPort extends JFrame {
 
     private JPanel jPanel = new JPanel();
 
+    {
+        addAllListener();
+    }
+
     public void init() {
         setBounds(780, 350, 400, 400);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,10 +73,13 @@ public class AddBookPort extends JFrame {
         jPanel.add(entry);
         jPanel.add(cancel);
         add(jPanel);
-        cancel.addActionListener(p -> setVisible(false));
-        entry.addActionListener(p -> addBooks());
         pack();
         setVisible(true);
+    }
+
+    public void addAllListener() {
+        cancel.addActionListener(p -> setVisible(false));
+        entry.addActionListener(p -> addBooks());
     }
 
     private void addBooks() {
