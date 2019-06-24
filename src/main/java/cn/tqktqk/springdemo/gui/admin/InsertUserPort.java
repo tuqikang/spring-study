@@ -69,7 +69,15 @@ public class InsertUserPort extends JFrame {
 
     private ButtonGroup group;
 
+    private static int flag=0;
+
     public void init() {
+        if (flag==1){
+            flush();
+            setVisible(true);
+            return;
+        }
+        flag++;
         setBounds(780, 350, 400, 400);
         setLayout(new GridLayout(1, 1));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -197,6 +205,7 @@ public class InsertUserPort extends JFrame {
             JOptionPane.showMessageDialog(null, "邮箱不能为空", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("邮箱不能为空");
         }
+        //正则表达式
         if (!entity.getEmail().matches(ValidRegex.REGEX_EMAIL)) {
             JOptionPane.showMessageDialog(null, "邮箱不合法", "错误", JOptionPane.ERROR_MESSAGE);
             throw new ServerException("邮箱不合法");

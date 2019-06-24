@@ -38,14 +38,21 @@ public class DefinitionInfoPort extends JFrame {
 
     private JButton teacher = new JButton("老师");
 
+    {
+        autoListener();
+    }
     public void init() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(800, 400, 220, 220);
         setLayout(new GridLayout(2, 1));
         add(student);
         add(teacher);
+        setVisible(true);
+    }
 
+    public void autoListener(){
         student.addActionListener(p -> {
+            //数据库查找对应的规章信息
             DefinitionEntity entity = definitionMapper.selectByRole(1);
             if (entity == null) {
                 JOptionPane.showMessageDialog(null, "无学生规章，请先去设置", "错误", JOptionPane.ERROR_MESSAGE);
@@ -62,8 +69,6 @@ public class DefinitionInfoPort extends JFrame {
             }
             show.display("老师", entity);
         });
-
-        setVisible(true);
     }
 
     private static class Show extends JFrame {

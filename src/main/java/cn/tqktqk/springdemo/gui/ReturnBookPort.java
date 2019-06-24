@@ -130,7 +130,7 @@ public class ReturnBookPort extends JFrame {
                     sb.append("总罚金:").append(sum.doubleValue()).append("元");
                 }
                 JOptionPane.showMessageDialog(null, sb.toString(), "还书成功", JOptionPane.PLAIN_MESSAGE);
-                setVisible(false);
+                init(userLoginResult);
             }
         });
     }

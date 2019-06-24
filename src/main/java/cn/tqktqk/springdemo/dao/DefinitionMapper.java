@@ -13,6 +13,7 @@ import cn.tqktqk.springdemo.model.entity.DefinitionEntity;import org.apache.ibat
  */
 public interface DefinitionMapper {
 
+    //数据库查找role的规章
     DefinitionEntity selectByRole(@Param("role")Integer role);
 
     Integer upperLimit(Integer role);

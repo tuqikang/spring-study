@@ -54,7 +54,14 @@ public class DefinitionPort extends JFrame {
 
     private ButtonGroup group;
 
+    private static int flag = 0;
+
     public void init() {
+        if (flag==1){
+            setVisible(true);
+            return;
+        }
+        flag++;
         setBounds(780, 350, 400, 400);
         setLayout(new GridLayout(1, 1));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -65,9 +72,11 @@ public class DefinitionPort extends JFrame {
         ensure.addActionListener(p -> {
             DefinitionEntity entity = getByForm();
             entity.setUpdate(LocalDate.now());
+            //如果数据库没得这个定义就去插入一条新的
             if (definitionMapper.selectByRole(entity.getRoleId()) == null) {
                 definitionMapper.insertByRole(entity);
             } else {
+                //如果有就会去修改
                 definitionMapper.updateByRole(entity);
             }
             JOptionPane.showMessageDialog(null, "设置成功", "成功", JOptionPane.PLAIN_MESSAGE);
@@ -142,7 +151,7 @@ public class DefinitionPort extends JFrame {
         return entity;
     }
 
-    public void flush(){
+    public void flush() {
         text1.setText("");
         text2.setText("");
         text3.setText("");

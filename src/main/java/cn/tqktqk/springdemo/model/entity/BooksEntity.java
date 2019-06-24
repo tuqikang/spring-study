@@ -42,6 +42,6 @@ public class BooksEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "书名:'" + name + "," + description + ", 余量:" + rest;
+        return "书名:" + name + ",简介:" + description + ", 余量:" + rest + ", 总量:" + amount;
     }
 }

@@ -185,7 +185,7 @@ public class LendBookPort extends JFrame{
 
                     }
                     JOptionPane.showMessageDialog(null, sb.toString(), "tips", JOptionPane.PLAIN_MESSAGE);
-                    setVisible(false);
+                    init(pn);
                 }
             }
         });

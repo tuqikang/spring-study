@@ -39,6 +39,7 @@ public class AdminMenuPort extends JFrame {
     @Autowired
     private BookManagePort bookManagePort;
 
+    //管理员首页
     public void design(UserLoginResult loginResul) {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(735, 350, 330, 330);

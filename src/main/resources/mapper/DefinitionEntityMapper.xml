@@ -15,6 +15,6 @@
     <update id="updateByRole">
         UPDATE `library`.`definition`
         SET `upper_limit` = #{entity.upperLimit} , `time_limit` = #{entity.timeLimit} , `forfeit` = #{entity.forfeit} ,`update`=#{entity.update}
-        WHERE (`id` = #{entity.roleId} );
+        WHERE (`role_id` = #{entity.roleId} );
     </update>
 </mapper>
